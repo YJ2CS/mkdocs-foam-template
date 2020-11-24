@@ -1,0 +1,507 @@
+# Copyright (c) 2016-2020 Martin Donath <martin.donath@squidfunk.com>
+
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to
+# deal in the Software without restriction, including without limitation the
+# rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+# sell copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+# IN THE SOFTWARE.
+
+#==================== Personal information ===================================
+# Project information
+site_name: CS-Notes
+site_url: https://YJ2CS.github.io/la-blog
+site_author: YJ2CS
+site_description: >-
+  Help you to learn Java,Python,C++ and Others
+# Repository
+repo_name: YJ2CS/la-blog
+repo_url: https://github.com/YJ2CS/la-blog
+edit_uri: ""
+# Copyright
+copyright: Copyright &copy; 2020 - 2020 YJ2CS
+
+# ================= theme Configuration =====================
+theme: # 自定义主题：通过安装python包的方式添加主题，requirements.txt文件中已经有material这个主题所需依赖
+  #  name: null
+  #  custom_dir: material
+  name: material
+  # 404 page
+  static_templates:
+    - 404.html
+  # Don't include MkDocs' JavaScript
+  include_search_page: false
+  search_index_only: true
+  # 中文，解决中文搜索问题
+  # Default values, taken from mkdocs_theme.yml
+  language: zh
+  features: # 特性
+    - navigation.expand #激活时，左侧栏将默认展开所有可折叠小节，因此用户不必手动执行此操作
+    - navigation.instant #激活即时加载时，所有内部链接的点击将截获，并通过XHR发送，而无需完全重新加载页面
+    - navigation.tabs # 激活选项卡时，顶级部分将呈现在大屏幕上标题下方的菜单层中（但当侧边栏隐藏时不会）
+    - header.autohide #自动隐藏顶部，给阅读留下空间
+  palette: # 调色板
+    scheme: slate
+    primary: teal
+    accent: green
+  font: # 字体
+    text: Roboto
+    code: Roboto Mono
+  # icon和徽标
+  favicon: assets/favicon.png
+  icon:
+    logo: logo
+
+# ================== docs_dir Configuration ============================
+# 源文档markdown文件的目录。 这可以是相对目录，在这种情况下，它相对于包含配置文件的目录进行解析，或者它可以是来自本地文件系统根目录的绝对目录路径。
+# 默认值： 'docs'
+# TODO docs_dir
+# docs_dir: 'source/_posts'
+docs_dir: 'docs'
+extra_css:
+  - 'stylesheets/extra.css' # 添加中文导出pdf支持
+
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML' #添加ajax支持，渲染数学公式
+
+#====================== mkdocs Plugins =========================
+plugins:
+  - rss
+  - search
+  - minify:
+      minify_html: true
+  # foam templete
+  - roamlinks
+  #- autolinks
+  - exclude:
+      glob:
+        - "*.tmp"
+        - "*.pdf"
+        - "*.gz"
+      regex:
+        - '.*\.(tmp|bin|tar)$'
+  - redirects: # 重定向
+      redirect_maps:
+#        extensions/admonition.md: reference/admonitions.md
+#        extensions/codehilite.md: reference/code-blocks.md
+#        extensions/footnotes.md: reference/footnotes.md
+#        extensions/metadata.md: reference/meta-tags.md
+#        extensions/permalinks.md: setup/setting-up-navigation.md #permalink
+#        extensions/pymdown.md: reference/admonitions.md
+#        plugins/revision-date.md: setup/adding-a-git-repository.md #revision-date
+#        plugins/search.md: setup/setting-up-site-search.md
+#        releases/4.md: upgrading.md #upgrading-from-4x-to-5x
+#        releases/5.md: upgrading.md #upgrading-from-3x-to-4x
+#        releases/changelog.md: changelog.md
+#        setup/adding-social-links.md: setup/setting-up-the-footer.md
+#        sponsorship.md: insiders.md
+
+
+#==================== Customization 定制图标指向链接 ====================
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/YJ2CS
+#    - icon: fontawesome/brands/gitter
+#      link: https://gitter.im/squidfunk/mkdocs-material
+#    - icon: fontawesome/brands/docker
+#      link: https://hub.docker.com/r/squidfunk/mkdocs-material/
+#    - icon: fontawesome/brands/twitter
+#      link: https://twitter.com/squidfunk
+#    - icon: fontawesome/brands/linkedin
+#      link: https://linkedin.com/in/squidfunk/
+#    - icon: fontawesome/brands/instagram
+#      link: https://instagram.com/squidfunk
+
+
+# ====================== Markdown扩展 Extensions ==========================
+markdown_extensions:
+  - admonition #告诫
+  - abbr
+  - attr_list # https://squidfunk.github.io/mkdocs-material/reference/images/
+  # foam templete
+  - codehilite:
+      guess_lang: false
+      linenums: false
+  - def_list
+  - footnotes
+  - meta
+  - toc: #目录
+      permalink: true #标题title右边点击定位到顶部的按钮
+      separator: "_"
+      slugify: !!python/name:pymdownx.slugs.uslugify # 解决中文标题解析问题
+      # 启用pymdownx支持
+  - pymdownx.arithmatex: # 算术数
+      generic: true
+  - pymdownx.betterem: # 智能启用,它提供了两种模式来控制星号和下划线粗体和粗体语法：打开时智能，如果关闭时正常
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.critic
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight # 代码高亮
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.magiclink:
+      repo_url_shorthand: true
+      user: squidfunk
+      repo: mkdocs-material
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.snippets:
+      check_paths: true
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+  - pymdownx.tabbed  # https://squidfunk.github.io/mkdocs-material/reference/content-tabs/
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+  # foam templete
+  - nl2br # newline-to-break
+
+# ============================== Google Analytics ==============================
+google_analytics:
+  - UA-180490240-1
+  - auto
+
+#============================== Page tree 页面树  ================================
+# 使用foam+romlinks插件后，这里的功能不需要再配置，但也可以手动更改
+#================================================================================
+
+#nav:
+#- 主页:
+#  - 怎样学习C++,Python,Java等高级程序设计语言: 怎样学习Cpp_Python_Java等高级程序设计语言.md
+#  - upgrading: changelog/update.md
+#  - 开发计划: changelog/TODO.md
+#  - testMarkdown: changelog/test.md
+#  - testmarkdown内容: changelog/test1.md
+#- 怎样学Java:
+##  - 怎样学习Java语言: 怎样学习Cpp_Python_Java等高级程序设计语言.md
+##  - 学习方法和书籍: Java/pre/0_1_学习方法和书籍.md
+#  - Java学习路线: Java/pre/0_3_Java学习路线.md
+#  - 笔记目录: Java/pre/0_4.md
+#  - 已经过时的一些知识: Java/pre/0_6_已经过时的一些知识.md
+#  #      - Java学习笔记
+#  - 第一阶段：基础知识:
+#    - 第1部分_2周:
+#      - 1.1 Java程序设计概述: Java/notes/1_基础知识_1_1.md
+#      - 1.2 Java程序设计环境: Java/notes/1_基础知识_1_2.md
+#      - 1.3 Java的基础程序设计结构: Java/notes/1_基础知识_1_3.md
+#    - 第2部分_2周:
+#      - 2.1 类和对象: Java/notes/1_基础知识_2_1.md
+#      - 2.2 接口与抽象类: Java/notes/1_基础知识_2_2.md
+#      - 2.3 lambda表达式与内部类: Java/notes/1_基础知识_2_3.md
+#      - 2.4 发布和部署: Java/notes/1_基础知识_2_4.md
+#    - 第3部分_1周:
+#      - 3.1 泛型: Java/notes/1_基础知识_3_1.md
+#      - 3.2 集合: Java/notes/1_基础知识_3_2.md
+#    - 第4部分_1周:
+#      - 4.1 异常与调试: Java/notes/1_基础知识_4_1.md
+#      - 4.2 多线程: Java/notes/1_基础知识_4_2.md
+#  - 第二阶段：Spring:
+#
+#    - 第1部分_1周:
+#      - Maven: Java/notes/2_Spring_1_1.md
+#      - 单元测试: Java/notes/2_Spring_1_2.md
+#    - 第2部分_2周:
+#      - Spring Core: Java/notes/2_Spring_2.md
+#    - 第3部分_2周:
+#      - HTTP协议: Java/notes/2_Spring_3_1.md
+#      - JSON: Java/notes/2_Spring_3_2.md
+#      - Servlet: Java/notes/2_Spring_3_3.md
+#    - 第4部分_1周:
+#      - Spring_4: Java/notes/2_Spring_4.md
+#  - 第三阶段：应用服务:
+#    - 第1部分_2周:
+#      - 应用服务_1_1: Java/notes/3_应用服务_1_1.md
+#      - 应用服务_1_2: Java/notes/3_应用服务_1_2.md
+#    - 第2部分_1周:
+#      - 应用服务_2_1: Java/notes/3_应用服务_2_1.md
+#      - 应用服务_2_2: Java/notes/3_应用服务_2_2.md
+#    - 第3部分_1周:
+#      - 应用服务_3_1: Java/notes/3_应用服务_3_1.md
+#      - 应用服务_3_2: Java/notes/3_应用服务_3_2.md
+#    - 第4部分_1周:
+#      - 应用服务_4: Java/notes/3_应用服务_4.md
+#
+#  - 其他的一些链接: Java/pre/0_5_链接集.md
+#
+#- 怎样学Python:
+##  - 怎样学习Python语言: 怎样学习Cpp_Python_Java等高级程序设计语言.md
+##  - 学习方法和书籍: Python/pre/0_1_学习方法和书籍.md
+#  - Python学习路线: Python/pre/0_2.md
+#  - 笔记目录: Python/pre/0_3.md
+##  - 学习笔记:
+#  - 第一阶段:基础知识:
+#    # Python程序设计概述
+#    - 1_1: Python/notes/1_1.md
+#    - 0-0_python常用英语单词: Python\notes\0_Python程序设计概述\0-0_python常用英语单词.md
+#    - 1-1_Python简介: Python\notes\0_Python程序设计概述\1-1_Python简介.md
+#
+#    # Python程序设计环境
+#    - 1_Python安装: Python\notes\1_Python运行环境\1-2_Python安装.md
+#    - 2_Python使用: Python\notes\1_Python运行环境\1-3_Python使用.md
+#    - 3_Pycharm使用: Python\notes\1_Python运行环境\2-1_Pycharm使用.md
+#
+#    # Python的基础程序设计结构
+#    - 1_Python_核心数据类型: Python\notes\2_类型和运算\1_介绍_Python_对象类型.md
+#    - 2_数字: Python\notes\2_类型和运算\2_数字.md
+#    - 3_动态类型简介: Python\notes\2_类型和运算\3_动态类型简介.md
+#    - 4_字符串: Python\notes\2_类型和运算\4_字符串.md
+#    - 5_列表: Python\notes\2_类型和运算\5_列表.md
+#    - 6_字典: Python\notes\2_类型和运算\6_字典.md
+#    - 7_元组_文件及其他: Python\notes\2_类型和运算\7_元组_文件及其他.md
+#
+#    - 1_赋值_表达式和打印: Python\notes\3_语句和语法\1_赋值_表达式和打印.md
+#    - 2_if_测试和语法规则: Python\notes\3_语句和语法\2_if_测试和语法规则.md
+#    - 3_while_和_for_循环: Python\notes\3_语句和语法\3_while_和_for_循环.md
+#    - 4_迭代器和解析: Python\notes\3_语句和语法\4_迭代器和解析.md
+#    - 5_文档: Python\notes\3_语句和语法\5_文档.md
+#
+#    - 1_函数基础: Python\notes\4_函数和生成器\1_函数基础.md
+#    - 2_作用域: Python\notes\4_函数和生成器\2_作用域.md
+#    - 3_参数: Python\notes\4_函数和生成器\3_参数.md
+#    - 4_函数的高级话题: Python\notes\4_函数和生成器\4_函数的高级话题.md
+#    - 5_解析和生成: Python\notes\4_函数和生成器\5_解析和生成.md
+#    - 6_基准插曲: Python\notes\4_函数和生成器\6_基准插曲.md
+#
+#  - 第二阶段:模块和包:
+#    # 1.模块和包
+#    - 1_模块_宏伟蓝图: Python\notes\5_模块和包\1_模块_宏伟蓝图.md
+#    - 2_模块代码编写基础: Python\notes\5_模块和包\2_模块代码编写基础.md
+#    - 3_模块包: Python\notes\5_模块和包\3_模块包.md
+#    - 4_高级模块话题: Python\notes\5_模块和包\4_高级模块话题.md
+#
+#    - 1_OOP_宏伟蓝图: Python\notes\6_类和_OOP\1_OOP_宏伟蓝图.md
+#    - 2_类代码编写基础: Python\notes\6_类和_OOP\2_类代码编写基础.md
+#    - 3_一个更实际的例子: Python\notes\6_类和_OOP\3_一个更实际的例子.md
+#    - 4_类代码编写细节: Python\notes\6_类和_OOP\4_类代码编写细节.md
+#    - 5_运算符重载: Python\notes\6_类和_OOP\5_运算符重载.md
+#    - 6_类的设计: Python\notes\6_类和_OOP\6_类的设计.md
+#    - 7_类的高级主题: Python\notes\6_类和_OOP\7_类的高级主题.md
+#    - 8_新特性: Python\notes\6_类和_OOP\8_新特性.md
+#
+#    - 1_异常基础: Python\notes\7_异常和工具\1_异常基础.md
+#    - 2_异常编码细节: Python\notes\7_异常和工具\2_异常编码细节.md
+#    - 3_异常对象: Python\notes\7_异常和工具\3_异常对象.md
+#    - 4_异常的设计: Python\notes\7_异常和工具\4_异常的设计.md
+#
+#    - 1_Unicode_和字节字符串: Python\notes\8_高级话题\1_Unicode_和字节字符串.md
+#    - 2_管理属性: Python\notes\8_高级话题\2_管理属性.md
+#    - 3_装饰器: Python\notes\8_高级话题\3_装饰器.md
+#    - 4_元类: Python\notes\8_高级话题\4_元类.md
+#  - 第三阶段:Django:
+#    - 施工中: Python\notes\施工中.md
+#  - 施工中(Python-learning):
+#    - 2-0_Python运算符: Python\notes\python-Learning\2-0_Python运算符.md
+#
+#    - 3-0_Python基础数据类型一: Python\notes\python-Learning\3-0_Python基础数据类型一.md
+#
+#    - 4-0_Python基础数据类型二: Python\notes\python-Learning\4-0_Python基础数据类型二.md
+#    - 5-0_Python_基础数据类型三: Python\notes\python-Learning\5-0_Python_基础数据类型三.md
+#    - 6-0_小数据池: Python\notes\python-Learning\6-0_小数据池.md
+#    # - 6-1_小数据池: Python\notes\python-Learning\6-1_小数据池.md
+#    # - 6-2_深浅拷贝: Python\notes\python-Learning\6-2_深浅拷贝.md
+#    # - 6-3_集合: Python\notes\python-Learning\6-3_集合.md
+#    - 7-0_Python基础数据类型补充: Python\notes\python-Learning\7-0_Python基础数据类型补充.md
+#    # - 7-1_数据类型方法补充: Python\notes\python-Learning\7-1_数据补充.md
+#    # - 7-2_以后会遇见的坑: Python\notes\python-Learning\7-2_以后会遇见的坑.md
+#    # - 7-3_二次编码: Python\notes\python-Learning\7-3_二次编码.md
+#    - 8-0_Python基础文件操作: Python\notes\python-Learning\8-0_Python基础文件操作.md
+#    # - 8-1_文件读操作: Python\notes\python-Learning\8-1_文件读操作.md
+#    # - 8-2_文件写操作: Python\notes\python-Learning\8-2_文件写操作.md
+#    # - 8-3_文件+模式: Python\notes\python-Learning\8-3_文件+模式.md
+#    # - 8-4_文件其他操作: Python\notes\python-Learning\8-4_文件其他操作.md
+#    - 9-0_Python基础初识函数: Python\notes\python-Learning\9-0_Python基础初识函数.md
+#    # - 9-1_函数的初识: Python\notes\python-Learning\9-1_函数的初识.md
+#    # - 9-2_函数的参数: Python\notes\python-Learning\9-2_函数的参数.md
+#    - 10-0_Python基础函数进阶: Python\notes\python-Learning\10-0_Python基础函数进阶.md
+#    # - 10-1_函数的动态传参: Python\notes\python-Learning\10-1_函数的动态传参.md
+#    # - 10-2_函数的名称空间: Python\notes\python-Learning\10-2_函数的名称空间.md
+#    # - 10-3_函数的全局修改gloabal和局部修改nonlocal: Python\notes\python-Learning\10-3_函数的全局修改和局部修改.md
+#    - 11-0_Python基础迭代器: Python\notes\python-Learning\11-0_Python基础迭代器.md
+#    # - 11-1_函数名的使用f-strings: Python\notes\python-Learning\11-1_函数名的使用.md
+#    # - 11-2_迭代器: Python\notes\python-Learning\11-2_迭代器.md
+#    - 12-0_Python基础生成器: Python\notes\python-Learning\12-0_Python基础生成器.md
+#    # - 12-1_生成器: Python\notes\python-Learning\12-1_生成器.md
+#    # - 12-2_推导式: Python\notes\python-Learning\12-2_推导式.md
+#    # - 12-3_内置函数一: Python\notes\python-Learning\12-3_内置函数一.md
+#    # - 13_Python基础自定义模块: Python\notes\python-Learning\13_Python基础自定义模块.md
+#    - 13-0_内置函数二: Python\notes\python-Learning\13-0_内置函数二.md
+#    # - 13-1_内置函数二: Python\notes\python-Learning\13-1_内置函数二.md
+#    # - 13-2_闭包: Python\notes\python-Learning\13-2_闭包.md
+#    # - 14_Python基础开发规范: Python\notes\python-Learning\14_Python基础开发规范.md
+#    - 14-0_Python基础装饰器: Python\notes\python-Learning\14-0_Python基础装饰器.md
+#    # - 14-1_装饰器介绍: Python\notes\python-Learning\14-1_装饰器介绍.md
+#    # - 14-2_标准版装饰器: Python\notes\python-Learning\14-2_标准版装饰器.md
+#    # - 15_Python基础模块一: Python\notes\python-Learning\15_Python基础模块一.md
+#    - 15-0_装饰器进阶及递归: Python\notes\python-Learning\15-0_装饰器进阶及递归.md
+#    # - 15-1_带参数装饰器: Python\notes\python-Learning\15-1_带参数装饰器.md
+#    # - 15-2_装饰器装饰一个函数: Python\notes\python-Learning\15-2_装饰器装饰一个函数.md
+#    # - 15-3_递归: Python\notes\python-Learning\15-3_递归.md
+#    - 16-0_自定义模块: Python\notes\python-Learning\16-0_自定义模块.md
+#    # - 16-1_模块的简介: Python\notes\python-Learning\16-1_模块的简介.md
+#    # - 16-2_模块import使用: Python\notes\python-Learning\16-2_模块import使用.md
+#    # - 16-3_模块from_import_使用: Python\notes\python-Learning\16-3_模块from_import_使用.md
+#    # - 16-4_模块的导入顺序: Python\notes\python-Learning\16-4_模块的导入顺序.md
+#    - 16-1_time模块: Python\notes\python-Learning\16-1_time.md
+#    - 16-2_datetime模块: Python\notes\python-Learning\16-2_datetime.md
+#    - 16-3_random模块: Python\notes\python-Learning\16-3_random.md
+#    - 17-0_模块一: Python\notes\python-Learning\17-0_模块一.md
+#    - 17_1_Flask: Python\notes\python-Learning\17_1_Flask.md
+#    # - 17-1_序列化: Python\notes\python-Learning\17-1_序列化.md
+#    # - 17-2_os: Python\notes\python-Learning\17-2_os.md
+#    # - 17-3_sys: Python\notes\python-Learning\17-3_sys.md
+#    # - 17-4_hashlib: Python\notes\python-Learning\17-4_hashlib.md
+#    # - 17-5_collections: Python\notes\python-Learning\17-5_collections.md
+#    - 18-0_软件开发规范: Python\notes\python-Learning\18-0_软件开发规范.md
+#    - 19-0_re: Python\notes\python-Learning\19-0_re.md
+#    - 20-0_包: Python\notes\python-Learning\20-0_包.md
+#    # - 20-1_最新版模块和包: Python\notes\python-Learning\20-1_最新版模块和包.md
+#    # - 20-2_logging: Python\notes\python-Learning\20-2_logging.md
+#    - 21-0_Python进阶初识面向对象: Python\notes\python-Learning\21-0_Python进阶初识面向对象.md
+#    - 22-0_Python进阶类空间: Python\notes\python-Learning\22-0_Python进阶类空间.md
+#    - 23-0_Python进阶类继承: Python\notes\python-Learning\23-0_Python进阶类继承.md
+#    - 24-0_Python面向对象三大特性: Python\notes\python-Learning\24-0_Python面向对象三大特性.md
+#    - 25-0_Python类成员: Python\notes\python-Learning\25-0_Python类成员.md
+#    - 26-0_Python_反射及双下方法: Python\notes\python-Learning\26-0_Python_反射及双下方法.md
+#    - 30-0_毕业串讲: Python\notes\python-Learning\30-0_毕业串讲.md
+#
+#    #          - SUMMARY: Python\notes\python-Learning\SUMMARY.md
+#    - 模块和包: Python\notes\python-Learning\32_0_模块和包.md
+#    # - 自定义模块: Python\notes\python-Learning\自定义模块.md
+#    - 装饰器博客园带评论: Python\notes\python-Learning\33_1_装饰器博客园带评论.md
+#    - 装饰器版博客园: Python\notes\python-Learning\33_0_装饰器版博客园.md
+#    # - 软件开发规范的副本: Python\notes\python-Learning\软件开发规范的副本.md
+#    - 预科第一天: Python\notes\python-Learning\0_1_预科第一天.md
+#    - 预科第三天: Python\notes\python-Learning\0_3_预科第三天.md
+#    - 预科第二天: Python\notes\python-Learning\0_2_预科第二天.md
+#  - Markdown_idea: article/Python/Markdown_idea.md
+#  - 其他的一些链接: Python/pre/0_5_链接集.md
+#
+#- 怎样学C++:
+##  - 怎样学习C++语言: 怎样学习Cpp_Python_Java等高级程序设计语言.md
+##  - 学习方法和书籍: Cpp/pre/0_1_学习方法和书籍.md
+#  - C++学习路线: Cpp/pre/0_2.md
+#  - 笔记目录: Cpp/pre/0_3.md
+#  #  - 学习笔记
+#  #  - 课后练习excersize
+#  - ch01: Cpp/notes/ch01.md
+#  - ch01excersize: Cpp/excersize/ch01.md
+#  - ch02: Cpp/notes/ch02.md
+#  - ch02excersize: Cpp/excersize/ch02.md
+#  - ch03: Cpp/notes/ch03.md
+#  - ch03excersize: Cpp/excersize/ch03.md
+#  - ch04: Cpp/notes/ch04.md
+#  - ch04excersize: Cpp/excersize/ch04.md
+#  - ch05: Cpp/notes/ch05.md
+#  - ch05excersize: Cpp/excersize/ch05.md
+#  - ch06: Cpp/notes/ch06.md
+#  - ch06excersize: Cpp/excersize/ch06.md
+#  - ch07: Cpp/notes/ch07.md
+#  - ch07excersize: Cpp/excersize/ch07.md
+#  - ch08: Cpp/notes/ch08.md
+#  - ch08excersize: Cpp/excersize/ch08.md
+#  - ch09: Cpp/notes/ch09.md
+#  - ch09excersize: Cpp/excersize/ch09.md
+#  - ch10: Cpp/notes/ch10.md
+#  - ch10excersize: Cpp/excersize/ch10.md
+#  - ch11: Cpp/notes/ch11.md
+#  - ch11excersize: Cpp/excersize/ch11.md
+#  - ch12: Cpp/notes/ch12.md
+#  - ch12excersize: Cpp/excersize/ch12.md
+#  - ch13: Cpp/notes/ch13.md
+#  - ch13excersize: Cpp/excersize/ch13.md
+#  - ch14: Cpp/notes/ch14.md
+#  - ch14excersize: Cpp/excersize/ch14.md
+#  - ch15: Cpp/notes/ch15.md
+#  - ch15excersize: Cpp/excersize/ch15.md
+#  - ch16: Cpp/notes/ch16.md
+#  - ch16excersize: Cpp/excersize/ch16.md
+#  - ch17: Cpp/notes/ch17.md
+#  - ch17excersize: Cpp/excersize/ch17.md
+#  - ch18: Cpp/notes/ch18.md
+#  - ch18excersize: Cpp/excersize/ch18.md
+#  - ch19: Cpp/notes/ch19.md
+#  - ch19excersize: Cpp/excersize/ch19.md
+#
+#  - 其他的一些链接: Cpp/pre/0_5_链接集.md
+#
+#- 文章集:
+#  - Java:
+#
+#    - 如何系统的自学Java语言: article/Java/0_4_如何系统的自学Java语言.md
+#    - java11中关于javafx配置_IDEA踩坑实录: article/Java/java11中关于javafx配置_IDEA踩坑实录.md
+#    - 原文转载-Java学习路线图: article/Java/Java学习路线图.md
+#
+#  - Python:
+#
+#    - 你们都是怎么学Python的_路人甲: article\Python\你们都是怎么学Python的_路人甲.md
+#    - 我的python学习经历及资源整理: article\Python\我的python学习经历及资源整理.md
+#
+#  - C++:
+#    - C++中的64位整数: article/Cpp/C++中的64位整数.md
+#    - C语言中的time_srand函数: article\Cpp\C语言中的time_srand函数.md
+#
+#  - 开发环境踩坑:
+#
+#    - docker_wsl2_hyper-v_proxifier_踩坑: article/docker_wsl2_hyper-v_proxifier_踩坑.md
+#    - pychram_manager_repo_镜像源: article/IDE/JB/pychram_manager_repo_镜像源.md
+#    - Cpp和OpenCV_运行环境: article\环境配置\Cpp和OpenCV_运行环境.md
+#    - Windows_修改encoding为utf-8: article\环境配置\Windows_修改encoding为utf-8.md
+#    - Windows停止端口占用taskkill: article\环境配置\windows_kill_post_占用进程.md
+#  - IDE:
+#    - Clion_Opencv: article\IDE\JB\Clion_Opencv.md
+#    - VC6_0问题: article\IDE\VS\VC6_0问题.md
+#    - VS新手问题: article\IDE\VS\VS新手问题.md
+#    - Vscode: article\IDE\VS\Vscode.md
+#    - Eclipse中修改包名或类名: article\IDE\eclipse\Eclipse中修改包名或类名.md
+#    - Eclipse用法_快速调整字体大小: article\IDE\eclipse\Eclipse用法_快速调整字体大小.md
+#    - Eclipse调整字体大小: article\IDE\eclipse\Eclipse调整字体大小.md
+#    - eclipse中出现如图无法寻找到主类的解决方法: article\IDE\eclipse\eclipse中出现如图无法寻找到主类的解决方法.md
+#    - eclipse中导入Java文件: article\IDE\eclipse\eclipse中导入Java文件.md
+#    - eclipse常见问题合集: article\IDE\eclipse\eclipse常见问题合集.md
+#
+#  - Vim:
+#    - Vim命令Linux命令: article\Vim\vim命令Linux命令.md
+#    - 史上最全的Vim命令: article\Vim\史上最全的Vim命令.md
+#    - VsVim_command: article\Vim\VsVim\VsVim_command.md
+#    - VsVim_install_config: article\Vim\VsVim\VsVim_install_config.md
+#
+#  - git:
+#    - 10分钟重新认识GIT: article\git\10分钟重新认识GIT.md
+#    - Git和Github笔记: article\git\git_github笔记.md
+#    - Git_Push_提示不支持具有_Socks5_方案的代理: article\git\Git_Push_提示不支持具有_Socks5_方案的代理.md
+#    - 配置git使用ssh连接提交push等操作: article\git\配置git使用ssh连接提交push等操作.md
+#    - windows_dos_常用命令行: article\git\windows_dos_常用命令行.md
+#    - 将更改提取到本地Git存储库-Azure存储库: article\git\将更改提取到本地Git存储库-Azure存储库.md
+#    - 处理非快进错误_non-fast-forward.md: article/git/处理非快进错误.md
+#  - 计算机学科原理:
+#    - 数据结构和算法\链表_错题总结: article\数据结构和算法\链表_错题总结.md
+#  - 未整理:
+#    - 记录升级PHP73_WordPress: article\记录升级PHP73_WordPress.md
+#    - v2ray安装配置: article\v2ray安装配置.md
+#    - Sakura_最新release: article\Sakura_最新release.md
+#
+#- 学习资源:
+#    - 学习仓库推荐: repo\0_1_github_repo.md
+#    - 电子书推荐: repo\0_2_Ebooks.md
+
+
+
