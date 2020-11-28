@@ -21,13 +21,17 @@
 - theme power by mkdocs-material
 
 ## 安装
-
+[项目安装](/conf_docs/项目安装.md)
 ## 配置
-
-## 初始化启动
+[项目配置](/conf_docs/项目配置.md)
 
 ## 写下第一篇文章
-
+[写文章](/conf_docs/写文章.md)
 ## 本地部署
-
+[本地部署](/conf_docs/本地部署.md)
 ## 在线部署(发布到GitHub pages)
+[在线部署](/conf_docs/在线部署.md)
+## 出现bug的自我检查修复
+[出现bug的自我检查修复](/conf_docs/出现bug的自我检查修复.md)
+## 可选功能
+[可选功能](/conf_docs/可选功能.md)
