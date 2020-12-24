@@ -20,7 +20,7 @@ date: 2020-11-16 17:54:00
 
 [[**cs_notes_foam_mkdocs**]](https://github.com/Jackiexiao/foam-mkdocs-template/blob/master/README-zh.md)
 
-![foam-mkdocs-template-png](images/readme.images/demo_mkdocs.png)
+![foam-mkdocs-template-png](_imgs/demo_mkdocs.png)
 
 * Share your **foam/obsidian/markdown** notes in a simple and intuitive way ! Support [[roamlike link]]
 
