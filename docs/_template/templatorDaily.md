@@ -19,5 +19,5 @@ date updated: {{tp_today}} {{tp_time:f=HH:mm:ss}}
 
 {{tp_daily_quote}}
 
--  总目录: [[_日记]]
+
 
