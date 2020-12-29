@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0"
+  xmlns:atom="https://www.w3.org/2005/Atom"
+  xmlns:dc="https://purl.org/dc/elements/1.1/"
+  xmlns:webfeeds="http://webfeeds.org/rss/1.0"
+  >
+
+  <channel>
+    <!-- Mandatory elements -->
+    <title>mk-template</title>
+    <description>this is a mk-template</description>
+    <link>https://YJ2CS.github.io/mk-template/</link>
+    <atom:link href="https://YJ2CS.github.io/mk-template/feed_rss_created.xml" rel="self" type="application/rss+xml" />
+
+    <!-- Optional elements -->
+    <managingEditor>YJ2CS</managingEditor>
+    
+    <docs>https://github.com/YJ2CS/mk-template</docs>
+    <language>zh</language>
+
+    <!-- Timestamps and frequency -->
+    <pubDate>Tue, 29 Dec 2020 04:40:12 -0000</pubDate>
+    <lastBuildDate>Tue, 29 Dec 2020 04:40:12 -0000</lastBuildDate>
+    <ttl>1440</ttl>
+
+    <!-- Credits -->
+    <generator>MkDocs RSS plugin - v0.10.0</generator>
+
+    <!-- Feed illustration -->
+    
+    <image>
+      <url>https://upload.wikimedia.org/wikipedia/commons/thumb/4/43/Feed-icon.svg/128px-Feed-icon.svg.png</url>
+      <title>mk-template</title>
+      <link>https://YJ2CS.github.io/mk-template/</link>
+    </image>
+    
+
+    <!-- Entries -->
+    
+    <item>
+      <title>站点导航</title>
+      <description>这里是站点导航，为了视图和反向链接的查找方便。
+
+## 作者备忘
+
+test
+## rss
+你可以使用rss阅读器来进行阅读</description>
+      <link>https://YJ2CS.github.io/mk-template/</link>
+      <pubDate>Tue, 15 Dec 2020 00:00:00 -0000</pubDate>
+      <source url="https://YJ2CS.github.io/mk-template/feed_rss_created.xml">mk-template</source>
+      <guid isPermaLink="true">https://YJ2CS.github.io/mk-template/</guid>
+      
+    </item>
+    
+  </channel>
+</rss>
